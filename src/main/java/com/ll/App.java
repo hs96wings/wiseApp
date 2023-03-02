@@ -11,6 +11,7 @@ public class App {
 
     public void run() {
         System.out.println("=== 명언 앱 ===");
+        long lastWiseId = 1;
 
         while (true) {
             System.out.print("명령) ");
@@ -24,7 +25,7 @@ public class App {
                 System.out.print("작가 : ");
                 String author = scanner.nextLine().trim();
 
-                System.out.println("1번 명언이 등록되었습니다.");
+                System.out.printf("%d번 명언이 등록되었습니다.\n", lastWiseId++);
             }
         }
     }
