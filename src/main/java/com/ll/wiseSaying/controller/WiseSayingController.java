@@ -44,5 +44,26 @@ public class WiseSayingController {
     public void remove(Rq rq) {
         int id = rq.getIntParam("id", -1);
 
+        if (id == -1) {
+            System.out.println("id(정수)를 입력해주세요");
+            return;
+        }
+
+        WiseSaying wiseSaying = findById(id);
+        if (wiseSaying == null) {
+            System.out.printf("%d번 명언은 존재하지 않습니다\n", id);
+            return;
+        }
+        wiseSayings.remove(wiseSaying);
+    }
+
+    private WiseSaying findById(int id) {
+        for (WiseSaying wiseSaying : wiseSayings) {
+            if (wiseSaying.getId() == id) {
+                return wiseSaying;
+            }
+        }
+
+        return null;
     }
 }
