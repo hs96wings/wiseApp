@@ -11,6 +11,9 @@ public class Rq {
         String[] cmdBits = cmd.split("\\?", 2);
         actionCode = cmdBits[0];
         params = new HashMap<>();
+
+        if (cmdBits.length == 1) return;
+
         String[] paramsBits = cmdBits[1].split("&");
 
         for (String paramStr : paramsBits) {

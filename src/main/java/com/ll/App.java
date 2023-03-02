@@ -18,20 +18,21 @@ public class App {
         while (true) {
             System.out.print("명령) ");
             String cmd = Container.getScanner().nextLine().trim();
+            Rq rq = new Rq(cmd);
 
-            if (cmd.equals("종료")) {
-                SystemControl.exit();
-                break;
-            } else if (cmd.equals("등록")) {
-                wiseSayingController.write();
-            } else if (cmd.equals("목록")) {
-                wiseSayingController.list();
-            } else if (cmd.startsWith("삭제")) {
-                Rq rq = new Rq(cmd);
-                System.out.printf("actionCode : %s\n", rq.getActionCode());
-                System.out.printf("params.id : %s\n", rq.getParam("id"));
-
-//                wiseSayingController.remove(cmd);
+            switch (rq.getActionCode()) {
+                case "종료":
+                    systemControl.exit();
+                    return;
+                case "등록":
+                    wiseSayingController.write();
+                    break;
+                case "목록":
+                    wiseSayingController.list();
+                    break;
+                case "삭제":
+                    wiseSayingController.remove();
+                    break;
             }
         }
     }
